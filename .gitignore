@@ -1,0 +1,10 @@
+balancer
+outputs
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+.env
+.DS_Store
+.gitingore
+.dockerignore

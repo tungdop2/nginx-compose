@@ -1,0 +1,21 @@
+services:
+  balancer:
+    build:
+      context: ./balancer
+      dockerfile: Dockerfile
+
+  web:
+    build: .
+    volumes:
+      - ./outputs:/app/outputs
+    environment:
+      - BALANCER_SERVICE_URL=http://balancer:1111
+    deploy:
+      replicas: 1
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
